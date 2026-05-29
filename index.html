@@ -183,7 +183,7 @@
         }
 
         /* Header */
-        .header { text-align: center; margin-bottom: 25px; }
+        .header { text-align: center; margin-bottom: 20px; }
 
         .brand-name {
             font-size: 1.9rem;
@@ -208,20 +208,35 @@
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
         }
 
-        /* Instructions Banner */
+        /* Instructions Banner (Moved to top with pointer animation) */
         .top-instruction-badge {
-            background: rgba(34, 211, 238, 0.05);
-            border: 1px solid rgba(34, 211, 238, 0.15);
-            padding: 12px;
-            border-radius: 14px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px dashed #38bdf8;
+            padding: 14px 16px;
+            border-radius: 18px;
             font-size: 0.95rem;
             margin-top: 15px;
             margin-bottom: 5px;
-            color: #e2e8f0;
+            color: #fff;
             text-align: center;
-            font-weight: bold;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.05);
         }
-        .top-instruction-badge span { color: #38bdf8; }
+        
+        .hand-pointer {
+            display: inline-block;
+            animation: tap-animation 0.8s infinite alternate;
+            font-size: 1.2rem;
+        }
+
+        @keyframes tap-animation {
+            from { transform: translateY(0) scale(1); }
+            to { transform: translateY(-4px) scale(1.1); }
+        }
 
         /* Navigation Tabs */
         .tabs-container {
@@ -287,6 +302,20 @@
             margin-bottom: 16px;
             color: #cbd5e1;
             text-align: justify;
+        }
+
+        /* تێبینی سوور بۆ خوارەوەی بەشەکان */
+        .notice-badge-red {
+            background: rgba(239, 68, 68, 0.07);
+            border-right: 4px solid #ef4444;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-top: 16px;
+            color: #fca5a5;
+            text-align: justify;
+            font-weight: 700;
+            line-height: 1.6;
         }
 
         .custom-request-badge {
@@ -471,20 +500,6 @@
             justify-content: center; gap: 10px; direction: ltr; margin-top: 15px;
         }
 
-        /* Bottom Fixed Info Note */
-        .bottom-info-note {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 14px;
-            border-radius: 16px;
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: #38bdf8;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
         .footer-note { text-align: center; font-size: 0.75rem; color: #475569; margin-top: 25px; }
     </style>
 </head>
@@ -493,7 +508,6 @@
     <div class="sidebar-overlay" id="overlay" onclick="toggleMenu()"></div>
     <div class="sidebar" id="sidebar">
         
-        <!-- دەربارەی کورد ئەجێنسی بە شێوازی کلیک -->
         <div class="menu-item-collapse" id="collapse-about">
             <button class="menu-header-btn" onclick="toggleCollapse('collapse-about')">دەربارەی کورد ئەجێنسی</button>
             <div class="menu-content-body">
@@ -503,7 +517,17 @@
             </div>
         </div>
 
-        <!-- ئێمە لە سۆشیاڵ مێدیا بە شێوازی کلیک -->
+        <div class="menu-item-collapse" id="collapse-office">
+            <button class="menu-header-btn" onclick="toggleCollapse('collapse-office')">ناونیشانی ئۆفیس</button>
+            <div class="menu-content-body">
+                <div class="menu-text-p">
+                    لە ئێستادا خەریکی دروستی کردنی ئۆفیسین لە سلێمانی بە نزیکترین کات ناونیشانی تەواوی ئۆفیسەکە دا ئەنێین وە لە داهاتویەکی نزیکدا ئۆفیسمان لە هەموو شارەکانی کوردستان ئەبێت.
+                    <br><br>
+                    <strong>خاوەنی Kurd Agency Company:</strong> ئاریان علی عبداللە
+                </div>
+            </div>
+        </div>
+
         <div class="menu-item-collapse" id="collapse-socials">
             <button class="menu-header-btn" onclick="toggleCollapse('collapse-socials')">ئێمە لە سۆشیاڵ میدیا</button>
             <div class="menu-content-body">
@@ -520,11 +544,14 @@
                         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
                         ئینستاگرام
                     </a>
+                    <a href="https://snapchat.com/t/54mPJKNh" target="_blank" class="menu-social-link" style="background: #fffc00; color: #000;">
+                        <svg viewBox="0 0 24 24"><path d="M12 2c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l2.79-2.79C10.09 18.64 11.03 19 12 19c4.97 0 9-4.03 9-9 0-4.97-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                        سناپچات
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- بەشی ناردنی CV لە ڕێگەی وەتسئەپ -->
         <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20وەکو%20کارمەند%20سیڤی%20(CV)%20خۆم%20بنێرم%20بۆ%20داواکاری%20کار." class="cv-link-btn" target="_blank">
             <span>ناردنی CV بۆ کارکردن</span>
             <span>➔</span>
@@ -544,9 +571,12 @@
 
         <div class="header">
             <div class="main-title">نرخ و خزمەتگوزاریەکانی کورد ئەجێنسی ببینە داوای بکە</div>
+            <div class="top-instruction-badge">
+                <span class="hand-pointer">👇</span>
+                تکایە بۆ ویستنی هەر سپۆنسەر و خزمەتگوزاریەک تەنیا پەنجەی لێبدە
+            </div>
         </div>
 
-        <!-- ناو بەشەکان لەگەڵ لۆگۆی گەڕاوە بۆ هەموو تابەکان -->
         <div class="tabs-container">
             <button class="tab-btn active" onclick="openTab(event, 'tiktok-biz')">
                 <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.836 4.836 0 0 1-3.23-1.22 4.851 4.851 0 0 1-1.22-3.23h-3.82v12.03a3.197 3.197 0 0 1-3.19 3.19 3.197 3.197 0 0 1-3.19-3.19 3.197 3.197 0 0 1 3.19-3.19c.29 0 .58.03.86.08V7.52a8.03 8.03 0 0 0-8.86 8c0 4.42 3.58 8 8 8s8-3.58 8-8V11.4c1.39 1 3.1 1.6 4.95 1.6v-3.82a4.843 4.843 0 0 1-3.4-2.49z"/></svg>
@@ -578,11 +608,7 @@
             </button>
         </div>
 
-        <!-- تیکتۆک بزنس -->
         <div id="tiktok-biz" class="content-section active">
-            <div class="notice-badge">
-                <strong>تێبینی:</strong> لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
-            </div>
             <div class="grid-container">
                 <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20بزنس:%2015,000%20بۆ%2030,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
@@ -618,13 +644,12 @@
                 </a>
             </div>
             <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
+            <div class="notice-badge-red">
+                تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
+            </div>
         </div>
 
-        <!-- تیکتۆک شەخسی -->
         <div id="tiktok-pers" class="content-section">
-            <div class="notice-badge">
-                <strong>تێبینی:</strong> لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
-            </div>
             <div class="grid-container">
                 <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20شەخسی:%2015,000%20بۆ%2030,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
@@ -650,7 +675,7 @@
                     <div class="card-line"></div>
                     <div class="card-price">20,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20شەخسی:%2080,000%20بۆ%20130,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆk%20شەخسی:%2080,000%20بۆ%20130,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
                         <span class="card-title">٨٠,٠٠٠ بۆ ١٣٠,٠٠٠ بینەر</span>
                         <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
@@ -668,9 +693,11 @@
                 </a>
             </div>
             <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
+            <div class="notice-badge-red">
+                تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
+            </div>
         </div>
 
-        <!-- فەیسبووک و ئینستاگرام (مێتا) -->
         <div id="meta-ads" class="content-section">
             <div class="notice-badge">
                 ئەم سپۆنسەره تایبەتە بە فرۆشتن و نامە و پەیوەندی، سپۆنسەرەکە ئەچێتە پێش چاوی ئەو کەسانەی پێویستیان بە بابەتەکەی تۆیە.
@@ -703,12 +730,14 @@
                 </a>
             </div>
             <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
+            <div class="notice-badge" style="margin-top:16px; border-right-color:#1877f2; background:rgba(24,119,242,0.04);">
+                <strong>تێبینی ئینستاگرام و فەیسبووک:</strong> لە سپۆنسەر ئینستاگرام پێویستە ئینستاگرامەکەت کۆنێکت بێت بە پەیجێکی فەیسبوک دواتر لە پەیج فەیسبووکەکە ئەمان کەیت بە ئەدمین لە ڕێگەی پەیجی فەیسبووکەکە سپۆنسەر بۆ ئینستاگرامەکەت ئەکرێت و پەیجی فەیسبوکەکە تەنیا بۆ ئەوەی سپۆنسەری ئینستاگرامەکە لای کەس دەرناکەوێت.
+            </div>
         </div>
 
-        <!-- سناپچات -->
         <div id="snapchat-ads" class="content-section">
             <div class="notice-badge">
-                <strong>* سپۆنسەری سناپچات:</strong> تایبەتە بە زیادکردنی فۆڵۆوەر وە شار، تەمەن، و ڕەگەز بە خواستی خۆت دیاری ئەکەیت .
+                <strong>سپۆنسەری سناپچات:</strong> تایبەتە بە زیادکردنی فۆڵۆوەر وە شار، تەمەن، و ڕەگەز بە خواستی خۆت دیاری ئەکەیت.
             </div>
             <div class="grid-container">
                 <a href="https://wa.me/9647510386174?text=داواکاری%20سناپچات:%2020,000%20بۆ%2050,000%20بینەر" class="card">
@@ -722,7 +751,7 @@
                 <a href="https://wa.me/9647510386174?text=داواکاری%20سناپچات:%2024,000%20بۆ%2060,000%20بینەر" class="card">
                     <div class="card-info">
                         <span class="card-title">٢٤,٠٠٠ بۆ ٦٠,٠٠٠ بینەر</span>
-                        <span class="card-sub">دیاریکردنی تەمەن, شار و ڕەگەز بەخواست</span>
+                        <span class="card-sub">دیاریکردنی تەمەن، شار و ڕەگەز بەخواست</span>
                     </div>
                     <div class="card-line"></div>
                     <div class="card-price">30,000 IQD</div>
@@ -763,7 +792,6 @@
             <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
         </div>
 
-        <!-- خزمەتگوزارییەکانی تر -->
         <div id="other-services" class="content-section">
             <div class="service-card">
                 <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
@@ -777,7 +805,6 @@
             </div>
         </div>
 
-        <!-- ڕێگاکانی پارەدان -->
         <div id="payment-tab" class="content-section">
             <div class="payment-box">
                 <div class="payment-title">ڕێگاکانی پارەدان</div>
@@ -814,7 +841,6 @@
             </div>
         </div>
 
-        <!-- تابی ڕەخنە و پێشنیارەکان -->
         <div id="feedback-tab" class="content-section">
             <div class="feedback-box">
                 <div class="feedback-title">ڕەخنە و پێشنیارەکانتان بنووسن</div>
@@ -851,11 +877,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- ئاگاداری جێگیر و فەرمی لە خوارەوەی ماڵپەڕەکە -->
-        <div class="bottom-info-note">
-            تکایە بۆ ویستنی هەر سپۆنسەر و خزمەتگوزاریەک تەنیا پەنجەی لێبدە
         </div>
 
         <div class="footer-note">KURD AGENCY © 2026 | هەموو مافەکان پارێزراوە</div>
