@@ -78,7 +78,7 @@
             box-shadow: -5px 0 25px rgba(0,0,0,0.5);
             z-index: 99;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 80px 25px 20px 25px;
+            padding: 80px 20px 20px 20px;
             overflow-y: auto;
         }
 
@@ -97,20 +97,89 @@
 
         .sidebar-overlay.show { display: block; }
 
-        .about-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #38bdf8;
-            margin-bottom: 15px;
-            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
-            padding-bottom: 8px;
+        /* Accordion Menu Items Inside Sidebar */
+        .menu-item-collapse {
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            overflow: hidden;
         }
 
-        .about-text {
+        .menu-header-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #38bdf8;
+            padding: 14px 16px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            text-align: right;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-header-btn::after {
+            content: '▼';
+            font-size: 0.75rem;
+            color: #64748b;
+            transition: 0.3s;
+        }
+        .menu-item-collapse.active .menu-header-btn::after {
+            transform: rotate(180deg);
+        }
+
+        .menu-content-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-text-p {
+            padding: 15px;
             font-size: 0.95rem;
             color: #cbd5e1;
             text-align: justify;
             line-height: 1.7;
+        }
+
+        /* Social List inside Menu */
+        .menu-social-list {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .menu-social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .menu-social-link svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* CV Send Link Style */
+        .cv-link-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            color: #22d3ee;
+            padding: 14px 16px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 12px;
+            margin-top: 5px;
         }
 
         /* Header */
@@ -225,6 +294,8 @@
             text-align: center;
             font-weight: bold;
             margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
         }
 
         /* Cards Design */
@@ -251,13 +322,12 @@
 
         .card-info { display: flex; flex-direction: column; text-align: right; }
         
-        /* چارەسەری تێکچوونی شوێنی ژمارەکان لێرەیە */
+        /* تێکەڵکردنی ڕاستەوخۆی پیت و ژمارە بۆ ڕێگریکردن لە پێچەوانەبوونەوە لە مۆبایلدا */
         .card-title { 
             font-size: 1.05rem; 
             font-weight: 700; 
-            color: #fff; 
-            display: inline-block; 
-            direction: ltr; 
+            color: #fff;
+            direction: rtl;
             text-align: right;
         }
         .card-sub { font-size: 0.85rem; color: #64748b; margin-top: 3px; }
@@ -288,31 +358,12 @@
         .service-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
         .service-desc { font-size: 0.9rem; color: #94a3b8; }
 
-        /* Accordion Toggle for Reviews */
-        .toggle-reviews-btn {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #38bdf8;
-            padding: 14px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 25px;
-            transition: 0.3s;
-        }
-        .toggle-reviews-btn:hover { background: rgba(56, 189, 248, 0.08); }
-
+        /* Feedback/Reviews Box (Inside Tab Now) */
         .feedback-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 20px;
             padding: 20px 15px;
-            margin-top: 12px;
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
         }
 
         .feedback-title { font-size: 1.1rem; font-weight: 800; text-align: center; margin-bottom: 15px; color: #fff; }
@@ -413,10 +464,56 @@
 
     <div class="sidebar-overlay" id="overlay" onclick="toggleMenu()"></div>
     <div class="sidebar" id="sidebar">
-        <div class="about-title">دەربارەی کورد ئەجێنسی</div>
-        <div class="about-text">
-            کورد ئەجێنسی لە ساڵی 2020 دروستکراوە و هەتا ئێستا دەستمان هەبووە لە دروستکردنی چەندین وێب سایت، ئەپڵیکەیشن، و سیستەمی پێشکەوتوو. ئێمە لێرەین بۆ پەرەپێدان و گەشەپێدانی تەواوی کار و بزنسەکان لە جیهانی دیجیتاڵیدا. ئامانجمان دابینکردنی باشترین خزمەتگوزاری ڕیکلامی و تەکنەلۆژییە بە بەرزترین کوالیتی و گونجاوترین نرخ، تا یارمەتی بڕاندەکان بدەین بگەنە لوتکە و زۆرترین فرۆش بەدەست بهێنن.
+        
+        <!-- دەربارەی کورد ئەجێنسی بە شێوازی کلیک -->
+        <div class="menu-item-collapse" id="collapse-about">
+            <button class="menu-header-btn" onclick="toggleCollapse('collapse-about')">دەربارەی کورد ئەجێنسی</button>
+            <div class="menu-content-body">
+                <div class="menu-text-p">
+                    کورد ئەجێنسی لە ساڵی 2020 دروستکراوە و هەتا ئێستا دەستمان هەبووە لە دروستکردنی چەندین وێب سایت، ئەپڵیکەیشن، و سیستەمی پێشکەوتوو. ئێمە لێرەین بۆ پەرەپێدان و گەشەپێدانی تەواوی کار و بزنسەکان لە جیهانی دیجیتاڵیدا. ئامانجمان دابینکردنی باشترین خزمەتگوزاری ڕیکلامی و تەکنەلۆژییە بە بەرزترین کوالیتی و گونجاوترین نرخ، تا یارمەتی بڕاندەکان بدەین بگەنە لوتکە و زۆرترین فرۆش بەدەست بهێنن.
+                </div>
+            </div>
         </div>
+
+        <!-- ئێمە لە سۆشیاڵ مێدیا بە شێوازی کلیک -->
+        <div class="menu-item-collapse" id="collapse-socials">
+            <button class="menu-header-btn" onclick="toggleCollapse('collapse-socials')">ئێمە لە سۆشیاڵ میدیا</button>
+            <div class="menu-content-body">
+                <div class="menu-social-list">
+                    <a href="https://www.tiktok.com/@kurd.agency?_r=1&_t=ZS-96lUyAmKINR" target="_blank" class="menu-social-link" style="background: #000;">
+                        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.836 4.836 0 0 1-3.23-1.22 4.851 4.851 0 0 1-1.22-3.23h-3.82v12.03a3.197 3.197 0 0 1-3.19 3.19 3.197 3.197 0 0 1-3.19-3.19 3.197 3.197 0 0 1 3.19-3.19c.29 0 .58.03.86.08V7.52a8.03 8.03 0 0 0-8.86 8c0 4.42 3.58 8 8 8s8-3.58 8-8V11.4c1.39 1 3.1 1.6 4.95 1.6v-3.82a4.843 4.843 0 0 1-3.4-2.49z"/></svg>
+                        تیکتۆکی فەرمی کورد ئەجێنسی
+                    </a>
+                    <a href="https://www.facebook.com/share/1CAmPqe2Pj/?mibextid=wwXIfr" target="_blank" class="menu-social-link" style="background: #1877f2;">
+                        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        فەیسبووکی فەرمی کورد ئەجێنسی
+                    </a>
+                    <a href="https://www.instagram.com/aryann.tech?igsh=MXEzcWozYWZwaHVyOA%3D%3D&utm_source=qr" target="_blank" class="menu-social-link" style="background: #e1306c;">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                        ئینستاگرام
+                    </a>
+                    <a href="https://wa.me/9647510386174" class="menu-social-link" style="background: #25d366;">
+                        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.817 9.817 0 0 0 12.04 2z"/></svg>
+                        وەتسئەپ
+                    </a>
+                    <a href="viber://chat?number=%2B9647510386174" class="menu-social-link" style="background: #7360f2;">
+                        <svg viewBox="0 0 24 24"><path d="M19.34 16.5c-.86-.54-2.12-1.42-2.88-1.55-.41-.07-.86.13-1.14.49-.41.53-.94 1.37-1.33 1.26-.84-.24-2.58-1.54-3.52-2.48-.94-.94-2.24-2.68-2.48-3.52-.11-.39.73-.92 1.26-1.33.36-.28.56-.73.49-1.14-.13-.76-1.01-2.02-1.55-2.88-.3-.48-.92-.57-1.38-.25L5.13 6.3c-.93.65-1.34 1.88-.94 2.97.87 2.37 3.32 6.94 6.06 9.68 2.74 2.74 7.31 5.19 9.68 6.06 1.09.4 2.32-.01 2.97-.94l1.2-1.68c.32-.46.23-1.08-.25-1.39z"/></svg>
+                        ڤایبەر
+                    </a>
+                    <a href="https://t.me/kurdagency1" class="menu-social-link" style="background: #0088cc;">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.16 1.56-.84 5.64-1.18 7.48-.14.76-.42 1.02-.7 1.04-.6.06-1.06-.38-1.64-.76-.9-.6-1.42-.98-2.3-1.56-1.02-.66-.36-1.02.22-1.62.16-.16 2.82-2.58 2.88-2.84.02-.04.02-.16-.06-.22-.08-.06-.18-.04-.26-.02-.12.02-1.94 1.22-5.46 3.6-.52.36-.98.54-1.4.52-.46-.02-1.34-.26-2-.48-.82-.26-1.46-.42-1.4-.88.04-.24.36-.48.98-.74 3.82-1.66 6.38-2.76 7.66-3.3 3.66-1.52 4.42-1.78 4.92-1.78.1 0 .34.02.5.14.12.1.16.22.18.36.02.1.02.24 0 .36z"/></svg>
+                        تێلێگرام
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- بەشی ناردنی CV لە ڕێگەی وەتسئەپ -->
+        <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20وەکو%20کارمەند%20سیڤی%20(CV)%20خۆم%20بنێرم%20بۆ%20داواکاری%20کار." class="cv-link-btn" target="_blank">
+            <span>ناردنی CV بۆ کارکردن</span>
+            <span>➔</span>
+        </a>
+
     </div>
 
     <div class="container">
@@ -432,33 +529,19 @@
         <div class="header">
             <div class="main-title">خزمەتگوزارییەکان و نرخەکانی کورد ئەجێنسی ببینە</div>
             <div class="top-instruction-badge">
-                👉 تەنیا پەنجە لەو خزمەتگوزارییە بدە کە ئەتەوێت ئۆتۆماتیکێ بە نامە پێمان دەگات
+                👉 تەنیا پەنجە لەو خزمەتگوزارییە بدە کە ئەتەوێت ئۆتۆماتیکێ بە نامە پێمان دەگات لە ڕێگەی وەتسئەپ
             </div>
         </div>
 
-        <!-- ڕێزبندی نوێی تایکەکان لە چەپەوە بۆ ڕاست -->
+        <!-- ناو بەشەکان لەگەڵ تابی نوێی ڕەخنە و پێشنیارەکان -->
         <div class="tabs-container">
-            <button class="tab-btn active" onclick="openTab(event, 'tiktok-biz')">
-                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.836 4.836 0 0 1-3.23-1.22 4.851 4.851 0 0 1-1.22-3.23h-3.82v12.03a3.197 3.197 0 0 1-3.19 3.19 3.197 3.197 0 0 1-3.19-3.19 3.197 3.197 0 0 1 3.19-3.19c.29 0 .58.03.86.08V7.52a8.03 8.03 0 0 0-8.86 8c0 4.42 3.58 8 8 8s8-3.58 8-8V11.4c1.39 1 3.1 1.6 4.95 1.6v-3.82a4.843 4.843 0 0 1-3.4-2.49z"/></svg>
-                سپۆنسەری تیکتۆک (بزنس)
-            </button>
-            <button class="tab-btn" onclick="openTab(event, 'tiktok-pers')">
-                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.836 4.836 0 0 1-3.23-1.22 4.851 4.851 0 0 1-1.22-3.23h-3.82v12.03a3.197 3.197 0 0 1-3.19 3.19 3.197 3.197 0 0 1-3.19-3.19 3.197 3.197 0 0 1 3.19-3.19c.29 0 .58.03.86.08V7.52a8.03 8.03 0 0 0-8.86 8c0 4.42 3.58 8 8 8s8-3.58 8-8V11.4c1.39 1 3.1 1.6 4.95 1.6v-3.82a4.843 4.843 0 0 1-3.4-2.49z"/></svg>
-                سپۆنسەری تیکتۆک (شەخسی)
-            </button>
-            <button class="tab-btn" onclick="openTab(event, 'meta-ads')">
-                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                سپۆنسەری مێتا (فەیسبووک و ئینستا)
-            </button>
-            <button class="tab-btn" onclick="openTab(event, 'snapchat-ads')">
-                <svg viewBox="0 0 24 24"><path d="M12 2c-.445 0-.89.04-1.33.117-.38.067-.577.41-.476.782.163.604.047 1.144-.356 1.583-.41.447-1.025.61-1.745.418-.396-.106-.777.143-.807.553-.047.64-.326 1.157-.866 1.52-.524.35-.11.83.218.892.654.12 1.143.493 1.402 1.145.242.612.115 1.25-.407 1.765-.333.328-.158.747.223.834.782.18 1.32.654 1.543 1.422.19.654-.034 1.255-.654 1.68-.316.216-.145.626.23.633.91.018 1.517.436 1.795 1.242.227.658.01 1.29-.636 1.744-.33.23-.114.62.272.613 1.114-.02 1.854.438 2.162 1.343.23.676-.04 1.358-.795 1.8-.328.192-.128.598.244.577 1.503-.082 2.476.5 2.89 1.737.197.59.045 1.14-.42 1.57-.315.29-.12.723.3.693 2.146-.15 3.393.753 3.655 2.7.072.54-.15 1.012-.66 1.32-.424.256-.057.702.417.618 3.5-.623 5.163.854 4.886 4.41-.05.642-.44 1.127-1.11 1.324-.467.137-.183.696.297.643 4.28-.47 5.922 1.558 4.793 5.992-.206.81-.8 1.325-1.706 1.365-.465.02-.303.626.217.653 4.852.253 6.002 3.1 3.23 6.942-.437.606-.118 1.155.534 1.155h4.86c.652 0 .97-.55.534-1.155-2.772-3.842-1.622-6.69 3.23-6.942.52-.027.682-.633.217-.653-.906-.04-1.5-.555-1.706-1.365-1.13-4.434.513-6.463 4.793-5.992.48.053.764-.506.297-.643-.67-.197-1.06-.682-1.11-1.324-.277-3.556 1.386-5.033 4.886-4.41.474.084.84-.362.417-.617-.51-.308-.732-.78-.66-1.32.262-1.947 1.51-2.85 3.655-2.7.42.03.585-.403.3-.693-.465-.43-.617-.98-.42-1.57.414-1.237 1.387-1.82 2.89-1.737.37.02.572-.385.244-.577-.755-.442-1.022-1.124-.795-1.8.308-.905 1.048-1.363 2.162-1.343.386.007.502-.383.272-.613-.646-.454-.863-1.086-.636-1.744.278-.806.885-1.224 1.795-1.242.375-.007.546-.417.23-.633-.62-.425-.844-1.026-.654-1.68.223-.768.76-1.242 1.543-1.422.38-.087.556-.506.223-.834-.522-.515-.65-1.153-.407-1.765.26-.652.748-1.025 1.402-1.145.328-.062.742-.542.218-.892-.54-.363-.82-.88-.866-1.52-.03-.41-.21-.72-.807-.553-.72.192-1.335.03-1.745-.418-.403-.44-.52-1.02-.356-1.583.1-.372-.096-.715-.476-.782C12.89 2.04 12.445 2 12 2z"/></svg>
-                سپۆنسەری سناپچات
-            </button>
+            <button class="tab-btn active" onclick="openTab(event, 'tiktok-biz')">سپۆنسەری تیکتۆک (بزنس)</button>
+            <button class="tab-btn" onclick="openTab(event, 'tiktok-pers')">سپۆنسەری تیکتۆک (شەخسی)</button>
+            <button class="tab-btn" onclick="openTab(event, 'meta-ads')">سپۆنسەری مێتا (فەیسبووک و ئینستا)</button>
+            <button class="tab-btn" onclick="openTab(event, 'snapchat-ads')">سپۆنسەری سناپچات</button>
             <button class="tab-btn" onclick="openTab(event, 'other-services')">خزمەتگوزارییەکانی تر</button>
-            <button class="tab-btn" onclick="openTab(event, 'payment-tab')" style="border-color: rgba(34, 211, 238, 0.4); color: #22d3ee;">
-                <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 .67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-                ڕێگاکانی پارەدان
-            </button>
+            <button class="tab-btn" onclick="openTab(event, 'payment-tab')" style="color: #22d3ee; border-color: rgba(34, 211, 238, 0.2);">ڕێگاکانی پارەدان</button>
+            <button class="tab-btn" onclick="openTab(event, 'feedback-tab')" style="color: #fbbf24; border-color: rgba(251, 191, 36, 0.2);">ڕەخنە و پێشنیارەکان</button>
         </div>
 
         <!-- تیکتۆک بزنس -->
@@ -467,89 +550,91 @@
                 <strong>* شێوازی بزنس:</strong> واتا سپۆنسەرەکە ئەچێتە پێش چاوی ئەو کەسانەی پێویستیان بەو بابەتەی تۆیە سودێکی زۆر باشی هەیە بۆ فرۆشتن.
             </div>
             <div class="grid-container">
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20بزنس%2015,000%20بۆ%2030,000%20بینەر%20بە%20نرخی%2015,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20بزنس:%2015,000%20بۆ%2030,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">15,000 بۆ 30,000 بینەر</span>
+                        <span class="card-title">١٥,٠٠٠ بۆ ٣٠,٠٠٠ بینەر</span>
                         <span class="card-sub">بۆ فرۆشتن و کار و بسنس</span>
                     </div>
                     <div class="card-price">15,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20بزنس%2030,000%20بۆ%2050,000%20بینەر%20بە%20نرخی%2025,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20بزنس:%2030,000%20بۆ%2050,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">30,000 بۆ 50,000 بینەر</span>
+                        <span class="card-title">٣٠,٠٠٠ بۆ ٥٠,٠٠٠ بینەر</span>
                         <span class="card-sub">بۆ فرۆشتن و کار و بسنس</span>
                     </div>
                     <div class="card-price">25,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20بزنس%2050,000%20بۆ%2080,000%20بینەر%20بە%20نرخی%2035,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20بزنس:%2050,000%20بۆ%2080,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">50,000 بۆ 80,000 بینەر</span>
+                        <span class="card-title">٥٠,٠٠٠ بۆ ٨٠,٠٠٠ بینەر</span>
                         <span class="card-sub">بۆ فرۆشتن و کار و بسنس</span>
                     </div>
                     <div class="card-price">35,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20بزنس%2080,000%20بۆ%20130,000%20بینەر%20بە%20نرخی%2045,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20بزنس:%2080,000%20بۆ%20130,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">80,000 بۆ 130,000 بینەر</span>
+                        <span class="card-title">٨٠,٠٠٠ بۆ ١٣٠,٠٠٠ بینەر</span>
                         <span class="card-sub">بۆ فرۆشتن و کار و بسنس</span>
                     </div>
                     <div class="card-price">45,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20بزنس%20130,000%20بۆ%20250,000%20بینەر%20بە%20نرخی%2055,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20بزنس:%20130,000%20بۆ%20250,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">130,000 بۆ 250,000 بینەر</span>
+                        <span class="card-title">١٣٠,٠٠٠ بۆ ٢٥٠,٠٠٠ بینەر</span>
                         <span class="card-sub">بۆ فرۆشتن و کار و بسنس</span>
                     </div>
                     <div class="card-price">55,000 IQD</div>
                 </a>
             </div>
+            <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
             <div class="notice-badge tiktok-warning">
                 <strong>تێبینی گرنگ:</strong> لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردووکی. لایک و کۆمێنت و فۆڵۆ بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
             </div>
         </div>
 
-        <!-- تیکتۆک شەخسی - ڕێکخستنی تەواوی نیشاندانی نزم بۆ بەرز -->
+        <!-- تیکتۆک شەخسی -->
         <div id="tiktok-pers" class="content-section">
             <div class="notice-badge">
                 ئۆفەرەکانی سپۆنسەرکردنی تیك تۆك بۆ پۆستی شەخسی و ئاسایی (بۆ زیادکردنی بینەر و فۆڵۆوەر و کارلێک).
             </div>
             <div class="grid-container">
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20شەخسی%2015,000%20بۆ%2030,000%20بینەر%20بە%20نرخی%2012,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20شەخسی:%2015,000%20بۆ%2030,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">15,000 بۆ 30,000 بینەر</span>
+                        <span class="card-title">١٥,٠٠٠ بۆ ٣٠,٠٠٠ بینەر</span>
                         <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
                     </div>
                     <div class="card-price">12,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20شەخسی%2030,000%20بۆ%2050,000%20بینەر%20بە%20نرخی%2017,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20شەخسی:%2030,000%20بۆ%2050,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">30,000 بۆ 50,000 بینەر</span>
+                        <span class="card-title">٣٠,٠٠٠ بۆ ٥٠,٠٠٠ بینەر</span>
                         <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
                     </div>
                     <div class="card-price">17,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20شەخسی%2050,000%20بۆ%2080,000%20بینەر%20بە%20نرخی%2020,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20شەخسی:%2050,000%20بۆ%2080,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">50,000 بۆ 80,000 بینەر</span>
+                        <span class="card-title">٥٠,٠٠٠ بۆ ٨٠,٠٠٠ بینەر</span>
                         <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
                     </div>
                     <div class="card-price">20,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20شەخسی%2080,000%20بۆ%20130,000%20بینەر%20بە%20نرخی%2025,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20شەخسی:%2080,000%20بۆ%20130,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">80,000 بۆ 130,000 بینەر</span>
+                        <span class="card-title">٨٠,٠٠٠ بۆ ١٣٠,٠٠٠ بینەر</span>
                         <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
                     </div>
                     <div class="card-price">25,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20تیکتۆک%20شەخسی%20130,000%20بۆ%20250,000%20بینەر%20بە%20نرخی%2045,000%20دینار%20داوا%20بکەم." class="card" onclick="ttq.track('InitiateCheckout');">
+                <a href="https://wa.me/9647510386174?text=داواکاری%20تیکتۆک%20شەخسی:%20130,000%20بۆ%20250,000%20بینەر" class="card" onclick="ttq.track('InitiateCheckout');">
                     <div class="card-info">
-                        <span class="card-title">130,000 بۆ 250,000 بینەر</span>
+                        <span class="card-title">١٣٠,٠٠٠ بۆ ٢٥٠,٠٠٠ بینەر</span>
                         <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
                     </div>
                     <div class="card-price">45,000 IQD</div>
                 </a>
             </div>
+            <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
             <div class="notice-badge tiktok-warning">
                 <strong>تێبینی گرنگ:</strong> لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردووکی. لایک و کۆمێنت و فۆڵۆ بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
             </div>
@@ -558,78 +643,50 @@
         <!-- فەیسبووک و ئینستاگرام (مێتا) -->
         <div id="meta-ads" class="content-section">
             <div class="notice-badge">
-                ئەم سپۆنسەرە تایبەتە بە فرۆشتن و نامە و پەیوەندی سپۆنسەرەکە ئەچێتە پێش چاوی ئەو کەسانەی پێویستیان بە بابەتەکەی تۆیە.
+                ئەم سپۆنسەره تایبەتە بە فرۆشتن و نامە و پەیوەندی سپۆنسەرەکە ئەچێتە پێش چاوی ئەو کەسانەی پێویستیان بە بابەتەکەی تۆیە.
             </div>
             <div class="grid-container">
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%202,500%20بۆ%2010,000%20بینەر%20بە%20نرخی%2010,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">2,500 بۆ 10,000 بینەر</span></div>
+                <a href="https://wa.me/9647510386174?text=داواکاری%20مێتا:%202,500%20بۆ%2010,000%20بینەر" class="card">
+                    <div class="card-info"><span class="card-title">٢,٥٠٠ بۆ ١٠,٠٠٠ بینەر</span></div>
                     <div class="card-price">10,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%203,750%20بۆ%2015,000%20بینەر%20بە%20نرخی%2015,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">3,750 بۆ 15,000 بینەر</span></div>
+                <a href="https://wa.me/9647510386174?text=داواکاری%20مێتا:%203,750%20بۆ%2015,000%20بینەر" class="card">
+                    <div class="card-info"><span class="card-title">٣,٧٥٠ بۆ ١٥,٠٠٠ بینەر</span></div>
                     <div class="card-price">15,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%205,000%20بۆ%2020,000%20بینەر%20بە%20نرخی%2020,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">5,000 بۆ 20,000 بینەر</span></div>
+                <a href="https://wa.me/9647510386174?text=داواکاری%20مێتا:%205,000%20بۆ%2020,000%20بینەر" class="card">
+                    <div class="card-info"><span class="card-title">٥,٠٠٠ بۆ ٢٠,٠٠٠ بینەر</span></div>
                     <div class="card-price">20,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%206,250%20بۆ%2025,000%20بینەر%20بە%20نرخی%2025,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">6,250 بۆ 25,000 بینەر</span></div>
+                <a href="https://wa.me/9647510386174?text=داواکاری%20مێتا:%206,250%20بۆ%2025,000%20بینەر" class="card">
+                    <div class="card-info"><span class="card-title">٦,٢٥٠ بۆ ٢٥,٠٠٠ بینەر</span></div>
                     <div class="card-price">25,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%207,500%20بۆ%2030,000%20بینەر%20بە%20نرخی%2030,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">7,500 بۆ 30,000 بینەر</span></div>
+                <a href="https://wa.me/9647510386174?text=داواکاری%20مێتا:%207,500%20بۆ%2030,000%20بینەر" class="card">
+                    <div class="card-info"><span class="card-title">٧,٥٠٠ بۆ ٣٠,٠٠٠ بینەر</span></div>
                     <div class="card-price">30,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%208,750%20بۆ%2035,000%20بینەر%20بە%20نرخی%2035,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">8,750 بۆ 35,000 بینەر</span></div>
-                    <div class="card-price">35,000 IQD</div>
-                </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%2010,000%20بۆ%2040,000%20بینەر%20بە%20نرخی%2040,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">10,000 بۆ 40,000 بینەر</span></div>
-                    <div class="card-price">40,000 IQD</div>
-                </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%2011,250%20بۆ%2045,000%20بینەر%20بە%20نرخی%2045,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">11,250 بۆ 45,000 بینەر</span></div>
-                    <div class="card-price">45,000 IQD</div>
-                </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20مێتا%2012,500%20بۆ%2050,000%20بینەر%20بە%20نرخی%2050,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">12,500 بۆ 50,000 بینەر</span></div>
-                    <div class="card-price">50,000 IQD</div>
-                </a>
             </div>
+            <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
         </div>
 
-        <!-- سناپچات -->
+        <!-- سناپچات (لابردنی تێبینی و ژێرنووسەکان بە تەواوی) -->
         <div id="snapchat-ads" class="content-section">
-            <div class="notice-badge">
-                <strong>* سپۆنسەری سناپچات:</strong> تایبەت بە زیادکردنی فۆڵۆوەر، شار و تەمەن و ڕەگەز بە خواستی خۆت دیاری ئەکەیت.
-            </div>
             <div class="grid-container">
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20سناپچات%2015,000%20بۆ%2030,000%20بینەر%20بە%20نرخی%2020,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">15,000 بۆ 30,000 بینەر</span><span class="card-sub">بۆ فرۆشتن و کار و کاسبی</span></div>
+                <a href="https://wa.me/9647510386174?text=داواکاری%20سناپچات:%2015,000%20بۆ%2030,000%20بینەر" class="card">
+                    <div class="card-info"><span class="card-title">١٥,٠٠٠ بۆ ٣٠,٠٠٠ بینەر</span></div>
                     <div class="card-price">20,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20سناپچات%2020,000%20بۆ%2040,000%20بینەر%20بە%20نرخی%2025,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">20,000 بۆ 40,000 بینەر</span><span class="card-sub">بۆ فرۆشتن و کار و کاسبی</span></div>
+                <a href="https://wa.me/9647510386174?text=داواکاری%20سناپچات:%2020,000%20بۆ%2040,000%20بینەر" class="card">
+                    <div class="card-info"><span class="card-title">٢٠,٠٠٠ بۆ ٤٠,٠٠٠ بینەر</span></div>
                     <div class="card-price">25,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20سناپچات%2025,000%20بۆ%2050,000%20بینەر%20بە%20نرخی%2035,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">25,000 بۆ 50,000 بینەر</span><span class="card-sub">بۆ فرۆشتن و کار و کاسبی</span></div>
+                <a href="https://wa.me/9647510386174?text=داواکاری%20سناپچات:%2025,000%20بۆ%2050,000%20بینەر" class="card">
+                    <div class="card-info"><span class="card-title">٢٥,٠٠٠ بۆ ٥٠,٠٠٠ بینەر</span></div>
                     <div class="card-price">35,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20سناپچات%2030,000%20بۆ%2060,000%20بینەر%20بە%20نرخی%2045,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">30,000 بۆ 60,000 بینەر</span><span class="card-sub">بۆ فرۆشتن و کار و کاسبی</span></div>
-                    <div class="card-price">45,000 IQD</div>
-                </a>
-                <a href="https://wa.me/9647510386174?text=سڵاو%20کورد%20ئەجێنسی،%20من%20دەمەوێت%20پاکێجی%20سناپچات%2040,000%20بۆ%2080,000%20بینەر%20بە%20نرخی%2055,000%20دینار%20داوا%20بکەم." class="card">
-                    <div class="card-info"><span class="card-title">40,000 بۆ 80,000 بینەر</span><span class="card-sub">بۆ فرۆشتن و کار و کاسبی</span></div>
-                    <div class="card-price">55,000 IQD</div>
-                </a>
             </div>
-            <div class="notice-badge custom-request-badge">
-                ✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت
-            </div>
+            <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
         </div>
 
         <!-- خزمەتگوزارییەکانی تر -->
@@ -645,21 +702,6 @@
                     <div class="service-title">دروستکردنی هەمۆ جۆرە سیستەمێک</div>
                     <div class="service-desc">دیزاین و پەرەپێدانی سیستەمی پێشکەوتوو، کاشێر، بەڕێوەبردنی کۆگا و داتابەیس.</div>
                 </div>
-                <div class="service-card">
-                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-                    <div class="service-title">تەسویر و مۆنتاژ</div>
-                    <div class="service-desc">ڕیکلامی ڤیدیۆیی سەرنجڕاکێش بە کوالیتی بەرز و مۆنتاژی ڕۆژ.</div>
-                </div>
-                <div class="service-card">
-                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-                    <div class="service-title">گرافیک دیزاین</div>
-                    <div class="service-desc">ناسنامەی بڕاند، لۆگۆ و پۆستەری مۆدێرن بۆ پەیجەکان.</div>
-                </div>
-                <div class="service-card">
-                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 7s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                    <div class="service-title">بەڕێوەبردنی پەیج و سۆشیاڵ مێدیا</div>
-                    <div class="service-desc">پۆستکردنی بەردەوام و وەڵامدانەوەی خێرای کڕیاران بە شێوازی پرۆفیشناڵ.</div>
-                </div>
             </div>
         </div>
 
@@ -667,7 +709,6 @@
         <div id="payment-tab" class="content-section">
             <div class="payment-box">
                 <div class="payment-title">ڕێگاکانی پارەدان</div>
-
                 <div class="payment-grid">
                     <a href="https://wa.me/9647510386174?text=سڵاو%20من%20دەمەوێت%20لە%20ڕێگەی%20FIB%20پارە%20بدەم" class="payment-item p-fib">
                         <span>First Iraqi Bank (FIB)</span>
@@ -681,18 +722,6 @@
                             <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8z"/></svg>
                         </div>
                     </a>
-                    <a href="https://wa.me/9647510386174?text=سڵاو%20من%20دەمەوێت%20لە%20ڕێگەی%20Qi%20Card%20پارە%20بدەم" class="payment-item p-qi">
-                        <span>Qi Card</span>
-                        <div class="payment-item-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                        </div>
-                    </a>
-                    <a href="https://wa.me/9647510386174?text=سڵاو%20من%20دەمەوێت%20لە%20ڕێگەی%20NassPay%20پارە%20بدەم" class="payment-item p-nass">
-                        <span>NassPay</span>
-                        <div class="payment-item-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 11.55C9.64 9.35 6.48 8 3 8v11c3.48 0 6.64 1.35 9 3.55 2.36-2.2 5.52-3.55 9-3.55V8c-3.48 0-6.64 1.35-9 3.55z"/></svg>
-                        </div>
-                    </a>
                 </div>
                 <div class="payment-number-box">
                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
@@ -701,55 +730,43 @@
             </div>
         </div>
 
-        <!-- فیدباک -->
-        <button class="toggle-reviews-btn" onclick="toggleFeedbackBox()">ڕەخنە و پێشنیارەکان ببینە</button>
-        
-        <div class="feedback-box" id="feedback-section">
-            <div class="feedback-title">ڕەخنە و پێشنیارەکانتان</div>
-            <div class="form-group">
-                <input type="text" id="rev-name" class="form-input" placeholder="ناوی تۆ...">
-            </div>
-            <div class="form-group">
-                <textarea id="rev-text" class="form-textarea" placeholder="ڕەخنە یان پێشنیارەکەت بنووسە..."></textarea>
-            </div>
-            <div class="rating-select" id="star-rating">
-                <span class="star-icon" data-value="1">★</span>
-                <span class="star-icon" data-value="2">★</span>
-                <span class="star-icon" data-value="3">★</span>
-                <span class="star-icon" data-value="4">★</span>
-                <span class="star-icon" data-value="5">★</span>
-            </div>
-            <button class="submit-btn" onclick="addReview()">ناردنی پێشنیار</button>
+        <!-- تابی نوێی ڕەخنە و پێشنیارەکان -->
+        <div id="feedback-tab" class="content-section">
+            <div class="feedback-box">
+                <div class="feedback-title">ڕەخنە و پێشنیارەکانتان بنووسن</div>
+                <div class="form-group">
+                    <input type="text" id="rev-name" class="form-input" placeholder="ناوی تۆ...">
+                </div>
+                <div class="form-group">
+                    <textarea id="rev-text" class="form-textarea" placeholder="ڕەخنە یان پێشنیارەکەت بنووسە..."></textarea>
+                </div>
+                <div class="rating-select" id="star-rating">
+                    <span class="star-icon" data-value="1">★</span>
+                    <span class="star-icon" data-value="2">★</span>
+                    <span class="star-icon" data-value="3">★</span>
+                    <span class="star-icon" data-value="4">★</span>
+                    <span class="star-icon" data-value="5">★</span>
+                </div>
+                <button class="submit-btn" onclick="addReview()">ناردنی پێشنیار</button>
 
-            <div class="reviews-list" id="reviews-container">
-                <div class="review-item">
-                    <div class="review-header">
-                        <span class="review-name">سازگار ئەحمەد</span>
-                        <span class="review-stars">★★★★★</span>
+                <div class="reviews-list" id="reviews-container">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="review-name">سازگار ئەحمەد</span>
+                            <span class="review-stars">★★★★★</span>
+                        </div>
+                        <div class="review-text">خزمەتگوزاری سپۆنسەری تیکتۆکتان زۆر نایاب بوو، فرۆشی پەیجەکەمی زۆر زیاد کرد. دەستتان خۆش بێت.</div>
                     </div>
-                    <div class="review-text">خزمەتگوزاری سپۆنسەری تیکتۆکتان زۆر نایاب بوو، فرۆشی پەیجەکەمی زۆر زیاد کرد. دەستتان خۆش بێت.</div>
                 </div>
             </div>
         </div>
 
-        <!-- پۆڵێنەکانی پەیوەندی -->
+        <!-- پۆڵێنەکانی پەیوەندی خێرا -->
         <div class="contact-box">
             <div class="social-buttons">
                 <a href="https://wa.me/9647510386174" class="btn-social btn-whatsapp" onclick="ttq.track('Contact');">
-                    <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.817 9.817 0 0 0 12.04 2zM6.57 6.41c.24 0 .48.01.7.02.24.01.47.02.7.53.28.63.94 2.31 1.02 2.48.08.17.14.37.02.6-.12.23-.18.37-.36.58-.18.2-.38.45-.54.6-.18.18-.37.38-.16.73.21.35.93 1.54 2 2.49 1.38 1.23 2.55 1.62 2.91 1.8.35.17.56.15.77-.08.21-.23.9-1.05 1.14-1.41.24-.36.48-.3.8-.18.33.12 2.08 1.02 2.44 1.2.36.18.6.27.69.42.09.15.09.87-.27 1.89-.36 1.02-1.78 1.41-2.45 1.41-.67 0-1.3-.04-3.95-1.12-3.19-1.31-5.22-4.54-5.38-4.75-.16-.21-1.3-1.73-1.3-3.3 0-1.57.82-2.34 1.11-2.65.3-.3.59-.42.83-.42z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.817 9.817 0 0 0 12.04 2z"/></svg>
                     <span>WhatsApp (0751 038 6174)</span>
-                </a>
-                <a href="viber://chat?number=%2B9647510386174" class="btn-social btn-viber" onclick="ttq.track('Contact');">
-                    <svg viewBox="0 0 24 24"><path d="M19.34 16.5c-.86-.54-2.12-1.42-2.88-1.55-.41-.07-.86.13-1.14.49-.41.53-.94 1.37-1.33 1.26-.84-.24-2.58-1.54-3.52-2.48-.94-.94-2.24-2.68-2.48-3.52-.11-.39.73-.92 1.26-1.33.36-.28.56-.73.49-1.14-.13-.76-1.01-2.02-1.55-2.88-.3-.48-.92-.57-1.38-.25L5.13 6.3c-.93.65-1.34 1.88-.94 2.97.87 2.37 3.32 6.94 6.06 9.68 2.74 2.74 7.31 5.19 9.68 6.06 1.09.4 2.32-.01 2.97-.94l1.2-1.68c.32-.46.23-1.08-.25-1.39z"/></svg>
-                    <span>Viber (0751 038 6174)</span>
-                </a>
-                <a href="https://t.me/kurdagency1" class="btn-social btn-telegram" target="_blank" onclick="ttq.track('Contact');">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.16 1.56-.84 5.64-1.18 7.48-.14.76-.42 1.02-.7 1.04-.6.06-1.06-.38-1.64-.76-.9-.6-1.42-.98-2.3-1.56-1.02-.66-.36-1.02.22-1.62.16-.16 2.82-2.58 2.88-2.84.02-.04.02-.16-.06-.22-.08-.06-.18-.04-.26-.02-.12.02-1.94 1.22-5.46 3.6-.52.36-.98.54-1.4.52-.46-.02-1.34-.26-2-.48-.82-.26-1.46-.42-1.4-.88.04-.24.36-.48.98-.74 3.82-1.66 6.38-2.76 7.66-3.3 3.66-1.52 4.42-1.78 4.92-1.78.1 0 .34.02.5.14.12.1.16.22.18.36.02.1.02.24 0 .36z"/></svg>
-                    <span>Telegram (kurdagency1)</span>
-                </a>
-                <a href="https://www.instagram.com/aryann.tech?igsh=MXEzcWozYWZwaHVyOA%3D%3D&utm_source=qr" class="btn-social btn-instagram" target="_blank">
-                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-                    <span>Instagram (Aryan Tech)</span>
                 </a>
             </div>
         </div>
@@ -763,13 +780,14 @@
             document.getElementById("overlay").classList.toggle("show");
         }
 
-        function toggleFeedbackBox() {
-            const fBox = document.getElementById("feedback-section");
-            if(fBox.style.display === "block") {
-                fBox.style.display = "none";
+        function toggleCollapse(id) {
+            const el = document.getElementById(id);
+            const body = el.querySelector('.menu-content-body');
+            el.classList.toggle('active');
+            if (el.classList.contains('active')) {
+                body.style.maxHeight = body.scrollHeight + "px";
             } else {
-                fBox.style.display = "block";
-                fBox.scrollIntoView({ behavior: 'smooth' });
+                body.style.maxHeight = "0";
             }
         }
 
