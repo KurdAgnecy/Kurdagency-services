@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kurd Agency | نرخ و خزمەتگوزارییەکان</title>
+
+    <!-- TikTok Pixel Tracker -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+    var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+    ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.load('D7D1KMRC77U0MJ45VCH0'); 
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            background-color: #050a07;
+            background-image: 
+                radial-gradient(circle at 50% -10%, #124d2d, transparent),
+                radial-gradient(circle at 0% 100%, #0a2012, transparent);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #fff;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 10px;
+        }
+
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .brand-name span {
+            color: #25d366;
+        }
+
+        .main-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #e0e0e0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 15px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* Navigation Tabs */
+        .tabs-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 5px 2px 15px 2px;
+            margin-bottom: 15px;
+            scrollbar-width: none;
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            flex: 0 0 auto;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: #25d366;
+            color: #000;
+            border-color: #25d366;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Info Badge Notice */
+        .notice-badge {
+            background: rgba(37, 211, 102, 0.1);
+            border-right: 4px solid #25d366;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            text-align: justify;
+        }
+
+        /* Pricing & Service Grid */
+        .grid-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(37, 211, 102, 0.4);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card-sub {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            margin-top: 2px;
+        }
+
+        .card-price {
+            background: rgba(37, 211, 102, 0.15);
+            color: #25d366;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            white-space: nowrap;
+            border: 1px solid rgba(37, 211, 102, 0.2);
+        }
+
+        /* Service Cards Custom */
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border-top: 4px solid #25d366;
+        }
+
+        .service-icon {
+            width: 45px;
+            height: 45px;
+            fill: #25d366;
+            margin-bottom: 12px;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        /* Payment Section Design */
+        .payment-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 20px 15px;
+            margin-top: 25px;
+            background-image: linear-gradient(135deg, rgba(37, 211, 102, 0.05) 0%, transparent 100%);
+        }
+
+        .payment-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .payment-title svg {
+            width: 22px;
+            height: 22px;
+            fill: #25d366;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .payment-item {
+            padding: 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Payment Brand Colors */
+        .p-fib { background: linear-gradient(135deg, #101010, #202020); border-right: 4px solid #FFD700; }
+        .p-fastpay { background: linear-gradient(135deg, #bd0000, #ec1c24); border-right: 4px solid #fff; }
+        .p-qi { background: linear-gradient(135deg, #004b87, #0066b2); border-right: 4px solid #f9a825; }
+        .p-nass { background: linear-gradient(135deg, #1b5e20, #2e7d32); border-right: 4px solid #fff; }
+
+        .payment-item-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .payment-number-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #25d366;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px 15px;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .contact-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .btn-social svg {
+            width: 26px;
+            height: 26px;
+            margin-left: 12px;
+            fill: #fff;
+        }
+
+        .btn-whatsapp { background: #25D366; color: #000; }
+        .btn-whatsapp svg { fill: #000; }
+        .btn-viber { background: #7360F2; }
+        .btn-telegram { background: #0088cc; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="brand-name">KURD <span>AGENCY</span></div>
+            <div class="main-title">خزمەتگوزارییەکان و نرخەکانی کورد ئەجێنسی ببینە</div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="openTab(event, 'tiktok-biz')">تیکتۆک (بزنس)</button>
+            <button class="tab-btn" onclick="openTab(event, 'meta-ads')">فەیسبووک و ئینستاگرام</button>
+            <button class="tab-btn" onclick="openTab(event, 'tiktok-pers')">تیکتۆک (شەخسی)</button>
+            <button class="tab-btn" onclick="openTab(event, 'other-services')">خزمەتگوزارییەکانی تر</button>
+        </div>
+
+        <!-- TAB 1: TikTok Business -->
+        <div id="tiktok-biz" class="content-section active">
+            <div class="notice-badge">
+                <strong>* شێوازی بزنس:</strong> واتا سپۆنسەرەکە تایبەتە بۆ فرۆشتن و دەچێتە پێش چاوی ئەو کەسانەی کە بە تەواوی پێویستیان بە بابەتەکەی تۆیە. سوودێکی یەکجار باشی هەیە بۆ زیادکردنی فرۆش.
+            </div>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">١٥ هەزار بۆ ٣٠ هەزار بینەر</span>
+                        <span class="card-sub">سپۆنسەری بزنس بۆ فرۆشتن</span>
+                    </div>
+                    <div class="card-price">١٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">٣٠ هەزار بۆ ٥٠ هەزار بینەر</span>
+                        <span class="card-sub">سپۆنسەری بزنس بۆ فرۆشتن</span>
+                    </div>
+                    <div class="card-price">٢٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">٥٠ هەزار بۆ ٧٠ هەزار بینەر</span>
+                        <span class="card-sub">سپۆنسەری بزنس بۆ فرۆشتن</span>
+                    </div>
+                    <div class="card-price">٣٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">٧٠ هەزار بۆ ١٠٠ هەزار بینەر</span>
+                        <span class="card-sub">سپۆنسەری بزنس بۆ فرۆشتن</span>
+                    </div>
+                    <div class="card-price">٤٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">١٠٠ هەزار بۆ ١٥٠ هەزار بینەر</span>
+                        <span class="card-sub">سپۆنسەری بزنس بۆ فرۆشتن</span>
+                    </div>
+                    <div class="card-price">٥٥,٠٠٠ د.ع</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: Facebook & Instagram -->
+        <div id="meta-ads" class="content-section">
+            <div class="notice-badge">
+                دیزاین کراوە بۆ پەیجەکانی ئینستاگرام و فەیسبووک بە باشترین جۆری بەدیهێنانی ئامانج و گەیشتن بە کڕیاری ڕاستەقینە.
+            </div>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-info"><span class="card-title">٢,٥٠٠ بۆ ١٠,٠00 بینەر</span></div>
+                    <div class="card-price">١٠,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info"><span class="card-title">٣,٧٥٠ بۆ ١٥,٠٠0 بینەر</span></div>
+                    <div class="card-price">١٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info"><span class="card-title">٥,٠٠٠ بۆ ٢٠,٠٠0 بینەر</span></div>
+                    <div class="card-price">٢٠,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info"><span class="card-title">٦,٢٥٠ بۆ ٢٥,٠٠0 بینەر</span></div>
+                    <div class="card-price">٢٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info"><span class="card-title">٧,٥٠٠ بۆ ٣٠,٠٠0 بینەر</span></div>
+                    <div class="card-price">٣٠,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info"><span class="card-title">٨,٧٥٠ بۆ ٣٥,٠٠0 بینەر</span></div>
+                    <div class="card-price">٣٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info"><span class="card-title">١٠,٠٠٠ بۆ ٤٠,٠٠0 بینەر</span></div>
+                    <div class="card-price">٤٠,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info"><span class="card-title">١١,٢٥٠ بۆ ٤٥,٠٠0 بینەر</span></div>
+                    <div class="card-price">٤٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info"><span class="card-title">١٢,٥٠٠ بۆ ٥٠,٠٠0 بینەر</span></div>
+                    <div class="card-price">٥٠,٠٠٠ د.ع</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: TikTok Personal -->
+        <div id="tiktok-pers" class="content-section">
+            <div class="notice-badge">
+                ئۆفەرەکانی سپۆنسەرکردنی تیك تۆك بۆ پۆستی شەخسی و ئاسایی (بۆ زیادکردنی بینەر و فۆڵۆوەر و کارلێک).
+            </div>
+            <div class="grid-container">
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">١٥k بۆ ٣٠k بینەر</span>
+                        <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
+                    </div>
+                    <div class="card-price">١٢,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">٣٠k بۆ ٥٠k بینەر</span>
+                        <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
+                    </div>
+                    <div class="card-price">١٧,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">٥٠k بۆ ٨٠k بینەر</span>
+                        <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
+                    </div>
+                    <div class="card-price">٢٠,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">٨٠k بۆ ١٣٠k بینەر</span>
+                        <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
+                    </div>
+                    <div class="card-price">٢٥,٠٠٠ د.ع</div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <span class="card-title">١٣٠k بۆ ٢٥٠k بینەر</span>
+                        <span class="card-sub">پۆستی شەخسی و ئاسایی</span>
+                    </div>
+                    <div class="card-price">٤٥,٠٠٠ د.ع</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: Other Services -->
+        <div id="other-services" class="content-section">
+            <div class="grid-container">
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <div class="service-title">دروستکردنی وێبسایت و ئەپڵیکەیشن</div>
+                    <div class="service-desc">دروستکردنی سەکۆ و ماڵپەڕی پێشکەوتوو بە نوێترین تەکنەلۆجیا بۆ بزنسەکەت.</div>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 12H6v-2h6v2zm4-4H6V9h10v2z"/></svg>
+                    <div class="service-title">سیستەمی کاشێر</div>
+                    <div class="service-desc">سیستەمی پێشکەوتوو بۆ بەڕێوەبردنی فرۆشتن، کۆگا و چاودێری دارایی بازاڕ و کۆمپانیاکان.</div>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                    <div class="service-title">تەسویر و مۆنتاژ</div>
+                    <div class="service-desc">وێنەگرتن و دەرهێنانی ڤیدیۆی ڕیکلامی بە بەرزترین کوالیتی و مۆنتاژی پرۆفیشناڵ.</div>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                    <div class="service-title">گرافیک دیزاین</div>
+                    <div class="service-desc">دیزاینکردنی لۆگۆ، پۆستەر، و ناسنامەی بڕاند بە شێوازێکی سەرنجڕاکێش و مۆدێرن.</div>
+                </div>
+                <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 7s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    <div class="service-title">بەڕێوەبردنی پەیج و سۆشیاڵ مێدیا</div>
+                    <div class="service-desc">پەرەپێدانی پەیجەکان، وەڵامدانەوەی کڕیار، پۆستکردنی بەردەوام و گەشەپێدانی ناوبانگی بازرگانی کڕیارەکانمان.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: Payment Section -->
+        <div class="payment-box">
+            <div class="payment-title">
+                <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                ڕێگاکانی پارەدان و وەرگرتن
+            </div>
+            <div class="payment-grid">
+                <div class="payment-item p-fib">
+                    <div class="payment-item-icon">FIB</div>
+                    <span>First Iraqi Bank</span>
+                </div>
+                <div class="payment-item p-fastpay">
+                    <div class="payment-item-icon">FP</div>
+                    <span>FastPay</span>
+                </div>
+                <div class="payment-item p-qi">
+                    <div class="payment-item-icon">Qi</div>
+                    <span>Qi Card</span>
+                </div>
+                <div class="payment-item p-nass">
+                    <div class="payment-item-icon">NP</div>
+                    <span>NassPay</span>
+                </div>
+            </div>
+            <div class="payment-number-box">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+                <span>0772 958 5559</span>
+            </div>
+        </div>
+
+        <!-- Contact Box -->
+        <div class="contact-box">
+            <div class="contact-title">بۆ داواکردنی هەر پاکێجێک پەیوەندیمان پێوە بکە:</div>
+            <div class="social-buttons">
+                <a href="https://wa.me/9647510386174" class="btn-social btn-whatsapp" onclick="ttq.track('Contact');">
+                    <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.81 9.81 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23m4.75 11.5c-.26-.13-1.53-.76-1.77-.85-.23-.09-.4-.13-.57.13-.17.27-.66.85-.81 1.02-.15.17-.3.19-.56.06-.26-.13-1.1-.4-2.1-1.29-.77-.69-1.3-1.53-1.45-1.79-.15-.26-.02-.4.11-.53.12-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.5-.41-.43-.57-.44h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.21.88 2.39 1 2.56.12.17 1.73 2.64 4.19 3.7.59.25 1.05.4 1.41.51.59.19 1.13.16 1.56.1.47-.07 1.53-.63 1.74-1.23.21-.6.21-1.12.15-1.23-.06-.11-.22-.17-.48-.3Z"/></svg>
+                    وەتسئەپ (0751 038 6174)
+                </a>
+                <a href="viber://chat?number=%2B9647510386174" class="btn-social btn-viber" onclick="ttq.track('Contact');">
+                    <svg viewBox="0 0 24 24"><path d="M19.34 16.32c-.12-.3-.54-.84-1.13-1.22-.53-.33-1-.62-1.44-.82a1 1 0 0 0-1.12.19l-.5.5c-.32.32-.61.27-.92.08a9.42 9.42 0 0 1-2.92-2.92c-.19-.31-.24-.6-.08-.92l.5-.5a1 1 0 0 0 .19-1.12c-.2-.44-.49-.91-.82-1.44-.38-.59-.92-1-1.22-1.13a1 1 0 0 0-1.27.35l-.6.9a3.86 3.86 0 0 0-.4 3.33A14.1 14.1 0 0 0 11.21 16a14.1 14.1 0 0 0 4.89 3.4 3.86 3.86 0 0 0 3.33-.4l.9-.6a1 1 0 0 0 .35-1.27l-.34-.41M12 2a10 10 0 1 1-10 10A10 10 0 0 1 12 2z"/></svg>
+                    ڤایبەر (0751 038 6174)
+                </a>
+                <a href="https://t.me/kurdagency1" class="btn-social btn-telegram" target="_blank" onclick="ttq.track('Contact');">
+                    <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.28 7.68-7c.33-.31-.07-.48-.51-.18L7.69 12.3 3.52 11c-.91-.3-1-.91.2-1.39l16.35-6.3c.75-.3 1.41.15 1.16 1.15l-2.78 13.1c-.2 1-.8 1.23-1.63.75l-4.2-3.1-2.02 1.95c-.23.22-.41.41-.85.41z"/></svg>
+                    تێلگرام (kurdagency1)
+                </a>
+                <a href="https://www.instagram.com/aryann.tech?igsh=MXEzcWozYWZwaHVyOA%3D%3D&utm_source=qr" class="btn-social btn-instagram" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                    ئینستاگرامی پرۆژە (Aryann Tech)
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-note">KURD AGENCY © 2026 | گەشەپێدانی بازرگانیەکەت لەگەڵ ئێمە ئاسانە</div>
+    </div>
+
+    <!-- Tab Logic Script -->
+    <script>
+        function openTab(evt, tabName) {
+            var i, contentSection, tabBtn;
+            
+            contentSection = document.getElementsByClassName("content-section");
+            for (i = 0; i < contentSection.length; i++) {
+                contentSection[i].classList.remove("active");
+            }
+            
+            tabBtn = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabBtn.length; i++) {
+                tabBtn[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
